@@ -1,6 +1,5 @@
-**Tool for finding changed modules or modules with changed dependencies.
-**
-Use it for filter modules where need to run tests (Test impact analysis)
+**Tool for finding changed modules or modules with changed dependencies.**
+Use it to for TIA (Test impact analysis)
 No need to run tests in those modules where there were no changes.
 
 [ ![Download](https://api.bintray.com/packages/grigory-rylov/gradle/gradle-diff-finder/images/download.svg?version=0.1.0) ](https://bintray.com/grigory-rylov/gradle/gradle-diff-finder/0.1.0/link)

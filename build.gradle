@@ -1,0 +1,52 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.2.61'
+}
+
+apply plugin: 'kotlin'
+
+group 'com.github.grishberg'
+version '0.1.0'
+
+ext {
+    PUBLISH_GROUP_ID = group
+    PUBLISH_ARTIFACT_ID = rootProject.name
+    PUBLISH_VERSION = version
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url 'https://maven.google.com'
+    }
+    mavenLocal()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile gradleApi()
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'org.mockito:mockito-core:2.16.0'
+    testCompile "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+// need to call  ./gradlew clean build generateRelease
+apply from: 'publish.gradle'
+
+apply plugin: 'maven-publish'
+// ./gradlew publishToMavenLocal
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
